@@ -1,31 +1,49 @@
-#ifndef Tree
-#define Tree
+#ifndef tree_H_
+#define tree_H_
 
-#include <iostream>
-#include <string>
 #include <vector>
-#include "node.h"
-using namespace std;
+#include <string>
+
+struct Node{
+	std::string name;
+	bool root;
+	struct Node *parent;
+	Node(std::string n = "Unnamed", Node *p = NULL){
+		name = n;
+		if(p == NULL) root = true;
+		else root = false;
+		parent = p;
+	}
+};
+
+typedef std::vector<Node *> nodeVec;  
 
 class Tree{
-	string name;
-	vector<Node> nodes;
-	int size;
+private:
+	std::string name;
 	int depth;
+	nodeVec nodes;
+	vector<int> testVec;
 public:
+	// Tree(string n, nodeVec import);
 	Tree();
-	Tree(string n, vector<Node> import);
+	Tree(const nodeVec &n);
 
 	~Tree();
 
-	string toString();
+	void print();
 
 	unsigned getSize();
 	short getDepth();
+	int getIndex(std::string n);
 
-	void addNode(Node n);
+	Node getNode(unsigned i);
+
+	void add2Test(int i);
+	void addNode(Node* n);
+	void addNode(string n = "Unnamed", int parentIndex = -1);
 	void delNode(unsigned i);
-	void editNode(unsigned i, string n, bool r, Node *p);
+	void editNode(unsigned i, std::string n, Node *p);
 };
 
-#endif //Tree
+#endif //tree_H_

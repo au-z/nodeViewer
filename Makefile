@@ -1,16 +1,13 @@
 all: driver
 
 driver: driver.o
-	g++ tree.o node.o driver.o -o driver
+	g++ -o driver tree.o driver.o
 
-node.o: node.cpp node.h
-	g++ -c node.cpp 
+driver.o: driver.cpp tree.o
+	g++ -c driver.cpp
 
 tree.o: tree.cpp tree.h
 	g++ -c tree.cpp 
-
-driver.o: tree.o node.o
-	g++ -c driver.cpp
 
 clean:
 	rm -rf *.o driver
