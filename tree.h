@@ -3,47 +3,54 @@
 
 #include <vector>
 #include <string>
+// #include <sstream>
 
 struct Node{
 	std::string name;
 	bool root;
-	struct Node *parent;
-	Node(std::string n = "Unnamed", Node *p = NULL){
+	short depth;
+	int parent;
+	Node(std::string n = "Unnamed", int p = -1){
 		name = n;
-		if(p == NULL) root = true;
-		else root = false;
+		if(p <= -1){
+			root = true;
+			depth = 0;
+		}
+		else{
+			root = false;
+		}
 		parent = p;
 	}
 };
 
-typedef std::vector<Node *> nodeVec;  
+typedef std::vector<Node> nodeVec;
 
 class Tree{
 private:
-	std::string name;
-	int depth;
+	string name;
+	short depth;
 	nodeVec nodes;
-	vector<int> testVec;
+
+	//Settings
+	bool strictDepth;
+
+	short calcDepth(unsigned i);
 public:
-	// Tree(string n, nodeVec import);
 	Tree();
-	Tree(const nodeVec &n);
+	Tree(string n, bool strictDepth);
 
-	~Tree();
-
-	void print();
+	void print(bool verbose);
 
 	unsigned getSize();
 	short getDepth();
-	int getIndex(std::string n);
+	int getIndex(string n);
 
 	Node getNode(unsigned i);
 
-	void add2Test(int i);
-	void addNode(Node* n);
+	void addNode(Node &n);
 	void addNode(string n = "Unnamed", int parentIndex = -1);
+	void editNode(unsigned i, string n, short d, int p);
 	void delNode(unsigned i);
-	void editNode(unsigned i, std::string n, Node *p);
 };
 
 #endif //tree_H_

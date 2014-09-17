@@ -1,22 +1,17 @@
 #include "tree.h"
+using namespace std;
 
 int main( int argc, char *argv[] ){
 
-	Node n("Optimus Prime");
-	cout << "Address of Optimus: " <<  &n << endl;
-	Node m("Bumbleboo", &n);
-	cout << "Address of Bumbleboo's parent: " << m.parent << endl;
+	Node n("N0");
+	Node m("N1", 0);
 
 	Tree tree;
-	tree.add2Test(4);
-	cout << "Address to be added: " << &n << endl;
-	tree.addNode(&n);
-	// tree.print();
-	// tree.addNode(&m);
-	// tree.print();
-	// tree.addNode("Rawhide", tree.getIndex("Optimus Prime"));
-	// tree.print();
-	// tree.delNode(0);
-	// tree.print();
+	tree.addNode(n);
+	tree.print(true);
+	tree.addNode(m);
+	tree.print(true);
+	tree.addNode("N2", tree.getIndex("N0"));
+	tree.print(true);
 	return 0;
 }
