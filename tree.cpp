@@ -1,4 +1,5 @@
 #include "tree.h"
+#include "sstream.h"
 
 bool debug = false;
 
@@ -40,7 +41,7 @@ void Tree::print(bool verbose){
 		}
 		str += "{" + nodes[i].name + ":" + displayParent;
 		if(verbose){
-			std::stringstream ss;
+			stringstream ss;
 			ss << nodes[i].depth;
 			string strDepth = ss.str();
 			str += ":" + strDepth;
