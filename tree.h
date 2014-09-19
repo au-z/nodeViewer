@@ -3,7 +3,6 @@
 
 #include <vector>
 #include <string>
-// #include <sstream>
 
 struct Node{
 	std::string name;
@@ -24,6 +23,8 @@ struct Node{
 };
 
 typedef std::vector<Node> nodeVec;
+static const string ROOT = "Root";
+static const string NOCHANGE = "|||";
 
 class Tree{
 private:
@@ -32,7 +33,10 @@ private:
 	nodeVec nodes;
 
 	//Settings
+	//disallows depths to be manually set
 	bool strictDepth;
+	//children connect to grandparents when parents die
+	// bool constantConnect;
 
 	short calcDepth(unsigned i);
 public:
@@ -44,6 +48,7 @@ public:
 	unsigned getSize();
 	short getDepth();
 	int getIndex(string n);
+	void editProperties(string n, bool strict);
 
 	Node getNode(unsigned i);
 
